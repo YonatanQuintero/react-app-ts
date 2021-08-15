@@ -5,15 +5,19 @@ import { Todo } from './models/Todo';
 
 const App: React.FC = () =>{
   const [todos,setTodos] = useState<Todo[]>([]);
+
   const AddTodo = (text:string) => {
-      setTodos([{id:Math.random().toString(),text:text}])
+      setTodos(prevTodos =>[
+        ...prevTodos
+        ,{id:Math.random().toString(),text:text}
+      ])
   };
   
-
   return(<div className="App">
     <NewTodo onAddTodo={AddTodo}/>
     <TodoList items={todos} />
   </div>);
+
 }
 
 export default App;
