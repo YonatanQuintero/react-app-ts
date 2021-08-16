@@ -1,4 +1,5 @@
 import React from "react";
+import { List, Button, Icon } from 'semantic-ui-react'
 
 interface TodoListProps{
     items:{id:string, text:string}[];
@@ -8,14 +9,19 @@ interface TodoListProps{
 
 const TodoList: React.FC<TodoListProps> = props =>{
 
-    return <ul>{props.items.map(todo=>
-                <li key={todo.id}>
-                    {todo.text}
-                    <button onClick={props.onDelete.bind(null,todo.id)}>
-                        Eliminar
-                        </button>
-                </li>)
-            }</ul>
+    return <List>{props.items.map(todo=>
+                <List.Item key={todo.id}>
+                    
+                    <Button 
+                    circular
+                    size="mini"
+                    icon
+                    onClick={props.onDelete.bind(null,todo.id)}>
+                        <Icon color="red" name="cancel"/>
+                        </Button>
+                        {todo.text}
+                </List.Item>)
+            }</List>
 };
 
 export default TodoList;
